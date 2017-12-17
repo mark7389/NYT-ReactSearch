@@ -1,0 +1,27 @@
+{
+  "name": "nytreactsearch",
+  "version": "1.0.0",
+  "description": "New York Times Article Search App",
+  "main": "server.js",
+  "repository": "https://github.com/mark7389/NYT-ReactSearch.git",
+  "author": "Mark Soliman",
+  "license": "ISC",
+  "scripts": {
+    "server": "node server.js",
+    "client": "node scripts/start-scripts.js",
+    "start": "concurrently \"nodemon server.js\" \"npm run client\"",
+    "build": "node scripts/build.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "installDeps": "yarn && cd client && yarn"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.1",
+    "nodemon": "^1.13.3"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongoose": "^4.13.7"
+  }
+}
