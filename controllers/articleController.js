@@ -1,39 +1,32 @@
-const db = require("../models");
 const axios = require("axios");
+const mongoose = require("mongoose");
+const db = require("../models");
+const Article = db.Article;
+console.log(Article);
 const apiKey = require("./apiKey");
-const url=""
+const url="https://api.nytimes.com/svc/search/v2/articlesearch.json"
+
 module.exports = {
 
-    findAll: function(req,res){
-
-        db.Article.find(req.query).sort({date:-1})
-        .then(dbModel => res.json(dbModel))
-        .catch(err=>res.status(422).json(err));
+    insert: function(req, res){
+        const URL = `${url}?q=${req.body.title}&begin_date=${req.body.start}&end_date=${req.body.end}&apikey=${apiKey}`;
+        console.log(URL);
+        axios.get(URL).then((results)=>{
+            const dataArray= [];
+            results.data.response.docs.map((doc, i, array)=>{
+               dataArray.push({
+                   title:doc.headline.main,
+                   date:doc.pub_date,
+                   description:doc.snippet,
+                   url:doc.web_url, 
+               });
+            });
+            Article.create(dataArray).then(dbModel=>res.json(dbModel))
+            .catch(err=>console.log(err));
+            
+        }).catch(err=>console.log(err));
+        
     },
-    findById: function(req, res){
-        db.Article.findById(req.params.id)
-        .then(dbModel=> res.json(dbModel))
-        .catch(err => res.status(422).json(err));
-    },
-    create: function(req, res){
-        axios.get("")
-        db.Article.create(req.body)
-        .then(dbModel =>res.json(dbModel))
-        .catch(err=>res.status(422).json(err));
-    },
-    update: function(req, res) {
-        db.Book
-          .findOneAndUpdate({ _id: req.params.id }, req.body)
-          .then(dbModel => res.json(dbModel))
-          .catch(err => res.status(422).json(err));
-      },
-      remove: function(req, res) {
-        db.Book
-          .findById({ _id: req.params.id })
-          .then(dbModel => dbModel.remove())
-          .then(dbModel => res.json(dbModel))
-          .catch(err => res.status(422).json(err));
-      }
     
 
 };

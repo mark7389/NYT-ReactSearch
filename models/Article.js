@@ -11,15 +11,14 @@ const ArticleSchema = new Schema({
         url: {type: String,
             required:true
             },
-        saved:{type:Boolean},
-        comments:{
-            type:[Schema.Types.ObjectId],
-            ref:"Comment"
-        },
+        saved:{type:Boolean, default:false},
+        description:{type:String}
+
+        
 });
 
 
 
 const Article = mongoose.model("Article", ArticleSchema);
 
-module.export = Article;
+module.exports = Article;

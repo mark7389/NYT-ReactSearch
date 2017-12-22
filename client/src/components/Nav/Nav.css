@@ -2,23 +2,30 @@
     font-family: 'OldEnglish';
     src: url('./Old English Five.ttf');
 }
-
-.brand-logo{
+nav{
+    background-color: rgb(53, 71, 71);
+    background-image: url("./imgs/new-york-2753807_1280.png");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/* .brand-logo{
     display: block;
     font-family: "OldEnglish";
+    font-size-adjust: inherit;
     text-align: center;
-    margin: .5%;
+    margin: 0.1%;
     color:black !important;
-}
-nav{
-    height: 130px;
-    background-image: url("./imgs/new-york-2753807_1280.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.image{
-    width: 25%;
-    height: 70%;
-    margin-left: 15%;
-    
+    line-height: 75px;
+    min-width: 150px;
+} */
+/* nav{
+    min-height: 135px;
+    width: 85%;
+    background-color: rgba(180, 178, 175, 0.534);
+    margin: auto;
+} */
+img{
+    width: 300px;
+    height: 300px;
 }

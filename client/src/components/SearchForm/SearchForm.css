@@ -1,0 +1,25 @@
+.input-field label{
+    position: relative;
+   
+}
+.input-field.col label{
+    left:0px;
+}
+.btn{
+    display: block;
+    margin: auto;
+    background-color: rgb(48,63,63);
+}
+.btn:hover{
+    background-color: rgba(48,63,63,0.5);
+}
+.input-field{
+    margin: auto;
+}
+form{
+    margin:5%;
+}
+form .row .col {
+    float: none;
+    margin:auto;
+}
