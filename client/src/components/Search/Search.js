@@ -15,9 +15,18 @@ class Search extends Component {
 
             console.log(this.state);
             API.get(this.state).then(res=>{
-                this.setState({articles:res.data});
+                this.setState({articles:res.data.dataArray});
                 console.log(this.state.articles);
             });
+
+    }
+    handleSave = (e)=>{
+
+            const ArticleIndex = e.target.id;
+            API.save(this.state.articles[ArticleIndex]).then(res=>{
+
+                console.log(res);
+            })
 
     }
 
@@ -35,7 +44,7 @@ class Search extends Component {
 
         
            return (<div>
-            {this.state.articles.length ? (<Results articles={this.state.articles} />) :
+            {this.state.articles.length ? (<Results articles={this.state.articles} onClick={this.handleSave}/>) :
             (<SearchForm onChange={this.handleInputChange} onSubmit={this.handleFormSubmit} />)}
             </div>
             )

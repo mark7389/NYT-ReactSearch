@@ -9,8 +9,11 @@ const API = {
             end: obj.end
         }
         return axios.post("/api/articles/", data );
-    }
+    },
+    save: (obj)=>{
 
+        return axios.post("/api/articles/save", obj);
+    }
 
 }
 

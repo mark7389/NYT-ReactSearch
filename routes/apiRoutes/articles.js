@@ -2,10 +2,10 @@ const router = require("express").Router();
 const articleController = require("../../controllers/articleController");
 router.route("/")
     // .get(articleController.findAll)
-    .post(articleController.insert);
+    .post(articleController.query);
 
-// router
-//   .route("/:id")
+router.route("/save")
+.post(articleController.save);
   
 
 module.exports = router;

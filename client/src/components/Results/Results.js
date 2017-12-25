@@ -5,19 +5,15 @@ const Results = props =>{
 
       return (
         <div className="row">  
-            {props.articles.map(article=>{
+            {props.articles.map((article, i)=>{
 
                     return( 
-                    <div className="section" key={article._id}>
-                        {!article.saved ? (
+                    <div className="section" key={i}>
+                         
                             <div><h1>{article.title}</h1>
                             <p>{article.description}</p>
-                            <button className="btn" id={article._id} onClick={props.onClick}>Save</button>
-                            <a className="btn" href={article.url}>view</a></div>) :
-                           (<div><h1>{article.title}</h1>
-                            <p>{article.description}</p>
-                            <button className="btn" id={article._id} onClick={props.onClick}>Delete</button>
-                            <a className="btn" href={article.url}>view</a></div>) }
+                            <button className="btn" id={i} onClick={props.onClick}>Save</button>
+                            <a className="btn" href={article.url}>view</a></div>
                     </div>
                     )
                     })

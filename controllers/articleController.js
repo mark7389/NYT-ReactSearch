@@ -8,25 +8,29 @@ const url="https://api.nytimes.com/svc/search/v2/articlesearch.json"
 
 module.exports = {
 
-    insert: function(req, res){
+    query: function(req, res){
         const URL = `${url}?q=${req.body.title}&begin_date=${req.body.start}&end_date=${req.body.end}&apikey=${apiKey}`;
         console.log(URL);
         axios.get(URL).then((results)=>{
-            const dataArray= [];
+            const dataArray=
             results.data.response.docs.map((doc, i, array)=>{
-               dataArray.push({
+              return {
                    title:doc.headline.main,
                    date:doc.pub_date,
                    description:doc.snippet,
                    url:doc.web_url, 
-               });
+               }
             });
-            Article.create(dataArray).then(dbModel=>res.json(dbModel))
-            .catch(err=>console.log(err));
+            res.json({dataArray});
             
         }).catch(err=>console.log(err));
         
     },
-    
+    save: function(req, res){
+        console.log(req.body);
+        db.Article.create(req.body).then(dbArticle=>{
+            res.json(dbArticle);
+        }).catch(err=>res.json(err));
 
+    }
 };
